@@ -11,32 +11,79 @@
     <title>Weather Dashboard</title>
 </head>
 
-<body>
-    <div class="main-container row">
-        <div class="col">
-            <div class="first">
-                    <h1>Search for a City:</h1>                
-                <form id="search" >
-                    <input class="" type="text" placeholder="" name="search">
-                    <button  class="" type="submit"><i class="material-icons">search</i></button>
-                    </form>
+<body onload="DefaultScreen()">
+    <header>
+        <h1 class="text-center">
+            <a>Weather Dashboard</a>
+        </h1>
+    </header>
 
-            </div>
-            <div class="second">
-                saved cities
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="main">
+                <h3 class="title">Search for City: </h3>
+                <form class="card-body">
+                    <p id="inputContainer"><input type="text" class="form-input" id="cityInput"></p>
+                    <button class="btn" type="button" onclick="GetInfo()">Click Me</button>
+                </form>
+
+                <!-- this is for the history -->
+                <div id="language-buttons" class="card-bottom">
+                    <a data-language="javascript" class="btn">JavaScript</a>
+                    <a data-language="html" class="btn">HTML</a>
+                    <a data-language="css" class="btn">CSS</a>
+                </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="third">
-                info display
+        <div class="col-12 col-md-8">
+            <div class=" cityName third">
             </div>
-            <div class="fourth">
-                5-Day Forecast
+
+            <!-- Five day forecast -->
+            <div id="weatherContainer">
+                <h2 id="cityName"></h2>
+
+                <div class="row" id="iconsContainer">
+                    <div class=" col icons">
+                        <p class="weather" id="day1"></p>
+                        <div class="image"><img src="dots.png" class="imgClass" id="img1"></div>
+                        <p class="minValues" id="day1Min"></p>
+                        <p class="maxValues" id="day1Max"></p>
+                    </div>
+
+                    <div class=" col icons">
+                        <p class="weather" id="day2"></p>
+                        <div class="image"><img src="dots.png" class="imgClass" id="img2"></div>
+                        <p class="minValues" id="day2Min"></p>
+                        <p class="maxValues" id="day2Max"></p>
+                    </div>
+
+                    <div class=" col icons">
+                        <p class="weather" id="day3"></p>
+                        <div class="image"><img src="dots.png" class="imgClass" id="img3"></div>
+                        <p class="minValues" id="day3Min"></p>
+                        <p class="maxValues" id="day3Max"></p>
+                    </div>
+
+                    <div class=" col icons">
+                        <p class="weather" id="day4"></p>
+                        <div class="image"><img src="dots.png" class="imgClass" id="img4"></div>
+                        <p class="minValues" id="day4Min"></p>
+                        <p class="maxValues" id="day4Max"></p>
+                    </div>
+
+                    <div class=" col icons">
+                        <p class="weather" id="day5"></p>
+                        <div class="image"><img src="dots.png" class="imgClass" id="img5"></div>
+                        <p class="minValues" id="day5Min"></p>
+                        <p class="maxValues" id="day5Max"></p>
+                    </div>
+                </div>
             </div>
+
         </div>
+        <script src="assets/js/script.js"></script>
 </body>
-
-<div .col- class=".col-sm-	.col-md-	.col-lg-	.col-xl-	.col-xxl- "></div>
 
 </html>

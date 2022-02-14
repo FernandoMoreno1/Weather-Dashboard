@@ -1,81 +1,56 @@
-let searchform = document.querySelector("#search")
+function GetInfo() {
+
+    var newName = document.getElementById("cityInput");
+    var cityName = document.getElementById("cityName");
+    cityName.innerHTML = "" + newName.value + "";
+
+    fetch('https://api.openweathermap.org/data/2.5/forecast?q=' + newName.value + '&appid=32ba0bfed592484379e51106cef3f204')
+        .then(response => response.json())
+        .then(data => {
+
+            //Getting the min and max values for each day
+            for (i = 0; i < 5; i++) {
+                document.getElementById("day" + (i + 1) + "Min").innerHTML = "Min: " + Number(data.list[i].main.temp_min - 273.15).toFixed(1) + "°";
+                //Number(1.3450001).toFixed(2); // 1.35
+            }
+
+            for (i = 0; i < 5; i++) {
+                document.getElementById("day" + (i + 1) + "Max").innerHTML = "Max: " + Number(data.list[i].main.temp_max - 273.15).toFixed(2) + "°";
+            }
 
 
+            //Getting Weather Icons
+            for (i = 0; i < 5; i++) {
+                document.getElementById("img" + (i + 1)).src = "http://openweathermap.org/img/wn/" +
+                    data.list[i].weather[0].icon
+                    + ".png";
+            }
+            console.log(data)
 
-//Add an event listener to the button that runs the function sendApiRequest when it is clicked
-searchform.addEventListener("submit", (event) => {
-    event.preventDefault();
-    console.log("button pressed")
-    const recipe = event.target.elements['search'].value;
-    sendApiRequest(recipe)
-})
 
+        })
+}
 
-//An asynchronous function to fetch data from the API.
-async function sendApiRequest(recipe) {
-    let APP_ID = "f2d9105a"
-    let API_KEY = "7e7ed414fbe548206f56d07e54706bea"
-    
-//currently you have to change what you want manualy otherwise you cant search anything new
-    let response = await fetch(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${API_KEY}&q=${recipe}`);
-    console.log(response)
-    let data = await response.json()
-
-    console.log(data)
-
-    useApiData(data)
+function DefaultScreen() {
+    document.getElementById("cityInput").defaultValue = "New York";
+    GetInfo();
 }
 
 
-//function that does something with the data received from the API. The name of the function should be customized to whatever you are doing with the data
-function useApiData(data) {
-    //what this is doing is selecting the class "recipes container" and making it into a card
-    //what the "${data.hits[0].recipe.image}" is doing is changing the original content to match with the recipe by optaining the property path
-    document.querySelector(".recipes-container").innerHTML = `
-    <div class="row">
-    <div class="col s6">
-      <div class="card">
-        <div class="card-image">
-          <img src="${data.hits[0].recipe.image}">
-        </div>
-        <div class="card-content">
-        <span>${data.hits[0].recipe.label}</span>
-        </div>
-      </div>
-    </div>
-  
-  
-    <div class="col s6">
-      <div class="card">
-        <div class="card-image">
-          <img src="${data.hits[3].recipe.image}">
-        </div>
-        <div class="card-content">
-          <span>${data.hits[3].recipe.label}</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="col s6">
-      <div class="card">
-        <div class="card-image">
-          <img src="${data.hits[1].recipe.image}">
-        </div>
-        <div class="card-content">
-          <span>${data.hits[1].recipe.label}</span>
-        </div>
-      </div>
-    </div>
-  
-    <div class="col s6">
-      <div class="card">
-        <div class="card-image">
-          <img src="${data.hits[4].recipe.image}">
-        </div>
-        <div class="card-content">
-          <span>${data.hits[4].recipe.label}</span>
-        </div>
-      </div>
-    </div>
-  `
+//Getting and displaying the text for the upcoming five days of the week
+var d = new Date();
+var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",];
+
+//Function to get the correct integer for the index of the days array
+function CheckDay(day) {
+    if (day + d.getDay() > 6) {
+        return day + d.getDay() - 7;
+    }
+    else {
+        return day + d.getDay();
+    }
+}
+
+for (i = 0; i < 5; i++) {
+    document.getElementById("day" + (i + 1)).innerHTML = weekday[CheckDay(i)];
 }
