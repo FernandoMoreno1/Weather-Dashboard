@@ -85,14 +85,7 @@ for (i = 0; i < 6; i++) {
 }
 
 
-// //uv index warning colors
-// if (uv.textContent >= 0 && uv.textContent < 4) {
-//     uv.setAttribute("style", "background-color:rgb(7, 179, 21);");
-// } else if (uv.textContent >= 4 && uv.textContent < 8) {
-//     uv.setAttribute("style", "background-color:yellow;");
-// } else if (uv.textContent >= 8) {
-//     uv.setAttribute("style", "background-color:red;");
-// }
+// need UV color sets and uv to work
 
 
 
