@@ -10,6 +10,7 @@
 header {
     padding: 20px 35px;
     background-color: #334b9d;
+    margin-bottom: 20px;
 }
   
 header h1 {
@@ -106,7 +107,17 @@ header h1 {
 }
 
 /* INFO BOX */
+.box1{
+margin-top: 1px;
+}
+.currentday{
+    padding: 15px;
+    border: 3px solid black;
+}
 
-.third{
-    border: 1px solid black;
+.tr {
+    width: 100%;
+    background-color: whitesmoke;
+    color: rgb(114, 112, 112);
+    border: 1px solid grey;
 }
